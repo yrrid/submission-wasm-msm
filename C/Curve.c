@@ -1,3 +1,12 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+
+***/
+
 void loadXY(PointXY* r, uint32_t* source) {
   fieldLoad(&r->x, source);
   fieldLoad(&r->y, source+12);

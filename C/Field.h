@@ -1,3 +1,12 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+
+***/
+
 void fieldLoad(Field* f, uint32_t* source);
 void fieldStore(uint32_t* destination, Field* f);
 

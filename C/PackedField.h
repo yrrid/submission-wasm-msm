@@ -1,3 +1,14 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+            Sougata Bhattacharya
+            Anthony Suresh
+
+***/
+
 static inline uint32_t ctz(uint32_t x) {
   return __builtin_ctz(x);
 }

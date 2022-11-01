@@ -1,3 +1,12 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+
+***/
+
 void scalarSubN(uint32_t* scalar) {
   int64_t carry=0;
 

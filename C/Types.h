@@ -1,3 +1,14 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+            Sougata Bhattacharya
+            Anthony Suresh
+
+***/
+
 typedef struct {
   uint64_t f0, f1, f2, f3, f4, f5;
 } PackedField;

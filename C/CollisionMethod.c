@@ -1,3 +1,15 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+            Sougata Bhattacharya
+            Anthony Suresh
+            Kushal Neralakatte 
+
+***/
+
 // This group of functions uses the collision method to batch point adds into buckets.
 // The basic idea is that we can add any point into any bucket.  If that bucket already
 // has an add pending in the batch, we have a "collision" and we queue the collision

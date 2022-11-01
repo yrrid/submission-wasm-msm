@@ -13,8 +13,8 @@ then
   cd ..
   
   # check that the compiled sum matches, if not abort
-  checksum=`sum sumission/submission.wasm`
-  if [ "$checksum" != "48971   107" ]
+  checksum=`sum submission/submission.wasm`
+  if [ "$checksum" != "52216   107" ]
   then
     echo "Checksum does not match expected compiled checksum."
     echo "Please verify clang --version is Ubuntu clang version 14.0.0-1ubuntu1"

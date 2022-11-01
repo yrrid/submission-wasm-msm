@@ -1,3 +1,12 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+
+***/
+
 static inline uint32_t sad(uint32_t a, uint32_t b) {
   return (a>=b) ? a-b : b-a;
 }

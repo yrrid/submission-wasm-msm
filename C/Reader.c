@@ -1,3 +1,12 @@
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+
+***/
+
 bool parseHex(uint8_t* buffer, FILE* file, int bytes) {
   int next=0, count, nibble, current;
   int nibbles[bytes*2];

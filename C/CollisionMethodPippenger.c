@@ -1,4 +1,16 @@
- void cmSlice10(uint32_t* sliced, uint64_t* packed) {
+/***
+
+Copyright (c) 2022, Yrrid Software, Inc.  All rights reserved.
+Licensed under the Apache License, Version 2.0, see LICENSE for details.
+
+Author(s):  Niall Emmart
+            Sougata Bhattacharya
+            Anthony Suresh
+            Kushal Neralakatte 
+
+***/
+
+static inline void cmSlice10(uint32_t* sliced, uint64_t* packed) {
   uint64_t mask=0x03FF, low=packed[0], high=packed[1];
 
   sliced[0]=low & mask;
