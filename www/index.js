@@ -1,15 +1,13 @@
 import * as reference from "reference";
-import * as submission from "./submission.wasm";
+import * as submission from "./submission.wasm"
 import * as utility from "./utility";
-
-import { memory } from '../reference/pkg/reference_bg.wasm';
 
 const REPEAT = 5;
 
 // Please modify the following for your submission.
 // point_arr: a js array of points
 // scalar_arr: a js array of scalars
-function submission_compute_msm (point_arr, scalar_arr) {
+function submission_compute_msm(point_arr, scalar_arr) {
   let size = scalar_arr.length;
   
   var windowBits;
@@ -22,7 +20,7 @@ function submission_compute_msm (point_arr, scalar_arr) {
     windowBits = 13;
   }
 
-  submission.msmInitialize(size, windowBits, 2048, 512); //nPoints,windowbits as first 2 params
+  submission.msmInitialize(size, windowBits, 1024, 128); //nPoints,windowbits as first 2 params
   
   const wasm_buffer = new Uint8Array(submission.memory.buffer);
 
@@ -60,7 +58,7 @@ const median = arr => {
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 };
 
-function arraysEqual (arr1, arr2) {
+function arraysEqual(arr1, arr2) {
   if (arr1 === arr2) return true;
   if (arr1 == null || arr2 == null) return false;
   if (arr1.length !== arr2.length) return false;
@@ -70,15 +68,14 @@ function arraysEqual (arr1, arr2) {
   return true;
 }
 
-function check_correctness () {
-  for (let repeat = 0; repeat < 1; repeat++) {
-    for (let size = 14; size <= 14; size += 2) { // Note: This size will be updated during evaluation
+function check_correctness() {
+  for (let repeat = 0; repeat <= 100; repeat++) {
+    for (let size = 6; size <= 6; size += 2) { // Note: This size will be updated during evaluation
       const point_vec = new reference.PointVectorInput(Math.pow(2, size));
       const scalar_vec = new reference.ScalarVectorInput(Math.pow(2, size));
       const reference_result = reference.compute_msm(point_vec, scalar_vec).toJsArray();
       const js_point_vec = point_vec.toJsArray();
       const js_scalar_vec = scalar_vec.toJsArray();
-      //const submission_result = rsubmission_compute_msm(js_point_vec, js_scalar_vec);
       const submission_result = submission_compute_msm(js_point_vec, js_scalar_vec);
       if (!arraysEqual(submission_result[0], reference_result[0])
         || !arraysEqual(submission_result[1], reference_result[1])) {
@@ -91,7 +88,7 @@ reference_result: ${reference_result}\n`;
   return "Correctness check passed.\n";
 }
 
-function benchmark_submission () {
+function benchmark_submission() {
   let out_text = "Submission performance.\n";
   for (let size = 6; size <= 6; size += 2) { // Note: This size will be updated during evaluation
     const point_vec = new reference.PointVectorInput(Math.pow(2, size));
@@ -102,7 +99,6 @@ function benchmark_submission () {
       { length: REPEAT },
       (_, i) => {
         const t0 = performance.now();
-        //rsubmission_compute_msm(js_point_vec, js_scalar_vec);
         submission_compute_msm(js_point_vec, js_scalar_vec);
         const t1 = performance.now();
         return t1 - t0;
@@ -114,7 +110,7 @@ function benchmark_submission () {
   return out_text;
 }
 
-function benchmark_reference () {
+function benchmark_reference() {
   let out_text = "Reference performance.\n";
   for (let size = 6; size <= 6; size += 2) { // Note: This size will be updated during evaluation
     const point_vec = new reference.PointVectorInput(Math.pow(2, size));

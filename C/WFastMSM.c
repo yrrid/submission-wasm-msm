@@ -1,9 +1,5 @@
-#if defined(PHONY_STD_TYPES)
-  #include "std_types.h"
-#else
-  #include <stdint.h>
-  #include <stdbool.h>
-#endif
+#include <stdint.h>
+#include <stdbool.h>
 
 #if !defined(C_BUILD) && !defined(WASM_BUILD)
   #error Please compile with -DC_BUILD or -DWASM_BUILD
@@ -112,6 +108,10 @@ void* msmRun() {
 
 void* logOutput() {
   return run.logOutput;
+}
+
+void f1m_toMontgomery(uint8_t* dest, uint8_t* src) {
+  // dummy stub so utility.js doesn't complain
 }
 
 void oneMillionModMuls() {

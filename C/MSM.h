@@ -2,28 +2,21 @@
   #error Please compile with -DWASM_BUILD or -DC_BUILD
 #endif
 
-
-/* these are now static inlines
 // Utility APIs
 void loadXY(PointXY* r, uint32_t* source);                                                // load XY from memory (24 x 32-bits)
 void storeXY(uint32_t* destination, PointXY* point);                                      // store XY to memory (24 x 32-bits)
 void loadXYZZ(PointXYZZ* r, uint32_t* source);                                            // load XYZZ from memory (48 x 32-bits)
-*/
 void storeXYZZ(uint32_t* destination, PointXYZZ* point);                                  // store XYZZ to memory (48 x 32-bits)
 void storeAccumulatorXYZZ(uint32_t* destination, AccumulatorXYZZ* accumulator);           // combination of getAccumulator and storeXYZZ
 
-/* these are now static inlines
 void negateXY(PointXY* affine);                                                           // affine = -affine
 void negateXYZZ(PointXYZZ* point);                                                        // point = -point
-*/
 
 void dumpXY(PointXY* point);                                                              // print out an XY point
 void dumpXYZZ(PointXYZZ* point);                                                          // print out an XYZZ point
 
-/* this is now static inline
 // Accumulator XYZZ APIs
 void initializeAccumulatorXYZZ(AccumulatorXYZZ* accumulator);                             // acc = 0
-*/
 
 void doubleXY(AccumulatorXYZZ* accumulator, PointXY* affine);                             // acc = 2*affine
 void doubleXYZZ(AccumulatorXYZZ* accumulator, PointXYZZ* point);                          // acc = 2*point

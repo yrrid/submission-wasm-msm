@@ -1,14 +1,14 @@
-static inline void loadXY(PointXY* r, uint32_t* source) {
+void loadXY(PointXY* r, uint32_t* source) {
   fieldLoad(&r->x, source);
   fieldLoad(&r->y, source+12);
 }
 
-static inline void storeXY(uint32_t* destination, PointXY* point) {
+void storeXY(uint32_t* destination, PointXY* point) {
   fieldStore(destination, &point->x);
   fieldStore(destination+12, &point->y);
 }
 
-static inline void loadXYZZ(PointXYZZ* r, uint32_t* source) {
+void loadXYZZ(PointXYZZ* r, uint32_t* source) {
   fieldLoad(&r->x, source);
   fieldLoad(&r->y, source+12);
   fieldLoad(&r->zz, source+24);
@@ -56,7 +56,7 @@ void copyXYZZ(PointXYZZ* r, PointXYZZ* point) {
   fieldSet(&r->zzz, &point->zzz);
 }
 
-static inline void negateXY(PointXY* affine) {
+void negateXY(PointXY* affine) {
   // point.y = -point.y + N
   affine->y.f0 = - affine->y.f0 + 0xFFFFAAABu;
   affine->y.f1 = - affine->y.f1 + 0xE7FBFFFCu + (affine->y.f0>>30);
@@ -74,7 +74,7 @@ static inline void negateXY(PointXY* affine) {
   fieldMask(&affine->y);
 }
 
-static inline void negateXYZZ(PointXYZZ* point) {
+void negateXYZZ(PointXYZZ* point) {
   // point.y = -point.y + 5N
   point->y.f0 = - point->y.f0 + 0xFFFE5557u;
   point->y.f1 = - point->y.f1 + 0xC7EBFFFCu + (point->y.f0>>30);
@@ -110,7 +110,7 @@ void dumpXYZZ(PointXYZZ* point) {
   fieldDump(&point->zzz, true);
 }
 
-static inline void initializeAccumulatorXYZZ(AccumulatorXYZZ* accumulator) {
+void initializeAccumulatorXYZZ(AccumulatorXYZZ* accumulator) {
   accumulator->infinity=true;
   accumulator->affine=false;
 }

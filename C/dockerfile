@@ -1,9 +1,0 @@
-FROM silkeh/clang:14
-
-WORKDIR /etc/msm
-
-RUN ls -la
-
-RUN which clang
-
-ENTRYPOINT ["./clangbuild.sh"]
