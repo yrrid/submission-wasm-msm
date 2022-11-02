@@ -1,6 +1,4 @@
-# zprize
-
-# `WASM` Z-prize challenge
+# WASM MSM Z-prize challenge
 
 ## Introduction
 
@@ -12,10 +10,10 @@ The following is Yrrid Software's WASM MSM submission to the Z-Prize.  The submi
 Improve the performance of WASM based MSM on BLS12-381-G1 Curves.
 
 We have tested our solution on the provided CoreWeave instance, an EPYC 7443P with 24 cores.  Our solution
-uses only a single core, as required by the competition specs.  Performance seems to vary somewhat from instance 
-to instance, but on our instance we observe the following run times:
+uses only a single core, as required by the competition specifications.  Performance seems to vary somewhat 
+from instance to instance, but on our instance we observe the following run times:
 
-|Input Vector Length | C WASM (ms) | 
+|Input Vector Length | Our WASM Submission (milliseconds) | 
 | --- | --- |
 | 2^14 | 326 |
 | 2^15 | 613 |
@@ -24,12 +22,12 @@ to instance, but on our instance we observe the following run times:
 | 2^18 | 4257 | 
 
 NOTE: The solution has been tuned for an EPYC 7443P processor, and would need to be re-tuned to achieve optimum 
-performance on other machines.
+performance on other processors.
 
 ## Submission Authors
 
-This solution was developed by Niall Emmart, Sougata Bhattacharya, and Anthony Suresh.  We would like to
-thank Kushal Neralakatte insights and some algorithmic suggestions.
+This solution was developed by Niall Emmart, Sougata Bhattacharya, and Anthony Suresh.  In addition, we would like 
+to thank Kushal Neralakatte for his insights and some algorithmic suggestions.
 
 ## Dependencies
 
@@ -66,7 +64,7 @@ cd bench
 
 This uses nodejs to emulate the browser and run the MSM code.  
 
-The default run is quite small, just with 64 scalars and points.  The sizes can be changed by editing `www/index.js`.
+The default run is quite small, with just 64 scalars and points.  The sizes can be changed by editing `www/index.js`.
 Note, you must re-run `./evaluate.sh` after changing the index.js file.
 
 ## Optimizations in our Solution
@@ -74,18 +72,19 @@ Note, you must re-run `./evaluate.sh` after changing the index.js file.
 In this section, we give a high level overview of the optimizations we have used to accelerate the MSM computation:
 
 -  Pippenger bucket algorithm, supporting window lengths 10, 11, 12, 13, 15, and 16 bits.
--  We use the cube root of 1 endomorphism to decompose each scalar into two 128-bit scalars.
+-  We use the cube root of one endomorphism to decompose each scalar into two 128-bit scalars.
 -  We use signed digits.  Note, for the window length 16, we evenly divide the 128-bit scalar
    values into 8 windows.  Scalars with the MSB set exploit the following trick: we negate the
-   scalar and point and continue processing normally.  This works since:
+   scalar and point and continue processing normally.  This works since:  
     &nbsp;&nbsp; *(M - s) (-P)* = *-s (-P)* = *s P*
 -  We use Aztec's trick of affine point addition with a batch inversion for both the bucket
    summation and bucket reduction (the sum of sums algorithm).
 -  We do not do any preprocessing or sorting of the scalars, instead, we use a simple bit
    array to determine if a bucket is already the target of a point addition.  In the event of 
-   collision, we add the point and bucket pair to a linked list for later processing.  When we 
+   a collision, we add the point and bucket pair to a linked list for later processing.  When we 
    have processed 1024 unique buckets, or reached 128 collisions, we do the batch invert and 
-   second phase of the point adds.   
+   second phase of the point adds.   We repeat this process until all the scalars have been 
+   processed.
 -  The FF and EC routines have been carefully optimized:
    - Based on Montgomery multiplication.
    - We use a redundant representations to minimize the number of correction steps in
