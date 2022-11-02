@@ -26,7 +26,7 @@ performance on other processors.
 
 ## Submission Authors
 
-This solution was developed by Niall Emmart, Sougata Bhattacharya, and Anthony Suresh.  In addition, we would like 
+This solution was developed by Niall Emmart, Sougata Bhattacharya, and Antony Suresh.  In addition, we would like 
 to thank Kushal Neralakatte for his insights and some algorithmic suggestions.
 
 ## Dependencies

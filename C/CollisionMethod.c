@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0, see LICENSE for details.
 
 Author(s):  Niall Emmart
             Sougata Bhattacharya
-            Anthony Suresh
+            Antony Suresh
             Kushal Neralakatte 
 
 ***/
