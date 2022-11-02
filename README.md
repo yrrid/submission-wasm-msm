@@ -7,7 +7,7 @@ The following is Yrrid Software's WASM MSM submission to the Z-Prize.  The submi
 
 ## The Goal
 
-Improve the performance of WASM based MSM on BLS12-381-G1 Curves.
+Improve the performance of WASM based MSM on the BLS12-381-G1 Curve.
 
 We have tested our solution on the provided CoreWeave instance, an EPYC 7443P with 24 cores.  Our solution
 uses only a single core, as required by the competition specifications.  Performance seems to vary somewhat 
